@@ -1,0 +1,68 @@
+{
+  "name": "football-fixture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "types": "src/main.ts",
+  "scripts": {
+    "start": "node -r module-alias/register dist/main.js",
+    "start:dev": "nodemon --exec ts-node -r tsconfig-paths/register ./src/main.ts",
+    "migration:up": "npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d ./src/infras/persistence/typeorm/data-source.ts",
+    "seed:run": "ts-node -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js seed",
+    "build": "tsc --build tsconfig.build.json",
+    "lint": "eslint . --ext=.js,.mjs,.ts --max-warnings=2 --fix",
+    "prettier": "prettier --config .prettierrc './**/*.ts' --write",
+    "test": "jest --coverage"
+  },
+  "author": "Vincent",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.5.0",
+    "@automapper/classes": "^8.7.7",
+    "@automapper/core": "^8.7.7",
+    "@tsconfig/node16": "^1.0.3",
+    "@types/node": "^16.11.60",
+    "class-validator": "^0.14.0",
+    "dataloader": "^2.2.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "inversify": "^6.0.1",
+    "module-alias": "^2.2.2",
+    "moment": "^2.29.4",
+    "mysql2": "^3.2.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^2.0.0-beta.1",
+    "typeorm": "^0.3.15",
+    "typeorm-seeding": "^1.6.1",
+    "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "@types/config": "^3.3.0",
+    "@types/jest": "^27.5.2",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.2",
+    "jest": "^27.5.1",
+    "lint-staged": "^11.2.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.4.1",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0"
+  },
+  "lint-staged": {
+    "**/*.(js|mjs|ts)": [
+      "eslint --max-warnings=2 --fix"
+    ],
+    "**/*.(js|json|mjs|md|yml|yaml|ts)": [
+      "prettier --write"
+    ]
+  },
+  "_moduleAliases": {
+    "@": "dist/"
+  }
+}
